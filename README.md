@@ -18,8 +18,24 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+1. Create and customize your config file:
 
+  ```
+  coffeelint --makeconfig > config/coffeelint.json
+  ```
+
+  By default guard-coffeelint will look in `config/coffeelint.json`,
+  but you can override the location with `:config_file` in your Guardfile.
+
+2. Add Coffeelint to your Guardfile:
+
+  ```ruby
+   # Lint CoffeeScript files on change
+  guard :coffeelint do
+    watch %r{^app/assets/javascripts/.*\.coffee$}
+  end
+  ```
+ 
 ## Contributing
 
 1. Fork it
