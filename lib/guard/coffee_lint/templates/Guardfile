@@ -1,0 +1,6 @@
+
+guard 'coffeelint' do
+  watch %r{^app/assets/javascripts/.*\.coffee$}
+
+  watch 'config/coffeelint.json'
+end
