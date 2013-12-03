@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["me@meagar.net"]
   spec.description   = %q{Guard plugin for Coffeelint}
   spec.summary       = %q{Guard plugin for Coffeelint}
-  spec.homepage      = ""
+  spec.homepage      = "http://github.com/meagar/guard-coffeelint"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
