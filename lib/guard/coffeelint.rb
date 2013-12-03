@@ -4,9 +4,9 @@ require 'guard/plugin'
 require 'coffeelint'
 
 module Guard
-  class CoffeeLint < Plugin
+  class Coffeelint < Plugin
 
-    VERSION = '0.0.1'
+    VERSION = '0.0.2'
 
     def initialize(options = {})
       super
@@ -14,7 +14,7 @@ module Guard
     end
 
     def start
-      UI.info "Guard::CoffeeLint linting against #{@config_file}"
+      UI.info "Guard::Coffeelint linting against #{@config_file}"
     end
 
     # Default behaviour on file(s) changes that the Guard plugin watches.
@@ -51,7 +51,7 @@ module Guard
 
 
     def lint_and_report(path)
-      errors = Coffeelint.lint_file(path, config_file: @config_file)
+      errors = ::Coffeelint.lint_file(path, config_file: @config_file)
 
       if errors.length > 0
         UI.warning "Coffeelint: #{path} has #{errors.length} errors"

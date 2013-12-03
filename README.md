@@ -1,6 +1,6 @@
 # Guard::Coffeelint
 
-CoffeeLint plugin for Guard
+Coffeelint plugin for Guard
 
 ## Installation
 
