@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'guard/coffeelint'
+require 'guard/coffeelint/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "guard-coffeelint"
-  spec.version       = Guard::Coffeelint::VERSION
+  spec.version       = Guard::CoffeelintVersion::VERSION
   spec.authors       = ["Matthew Eagar"]
   spec.email         = ["me@meagar.net"]
   spec.description   = %q{Guard plugin for Coffeelint}
