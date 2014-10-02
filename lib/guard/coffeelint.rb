@@ -6,8 +6,6 @@ require 'coffeelint'
 module Guard
   class Coffeelint < Plugin
 
-    VERSION = '0.0.2'
-
     def initialize(options = {})
       super
       @config_file = options[:config_file] || 'config/coffeelint.json'
