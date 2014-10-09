@@ -44,7 +44,13 @@ module Guard
         "#{error_count} errors in #{paths.length} files"
       end
 
-      Notifier.notify(message, title: "Coffeelint", image: :failed)
+      image = if error_count > 0
+        :failed
+      else
+        :success
+      end
+
+      Notifier.notify(message, title: "Coffeelint", image: image)
     end
 
 
