@@ -55,7 +55,11 @@ module Guard
 
 
     def lint_and_report(path)
-      errors = ::Coffeelint.lint_file(path, config_file: @config_file)
+      # This is reporting some bad false-positives
+      #errors = ::Coffeelint.lint_file(path, config_file: @config_file)
+
+      # This works :|
+      errors = JSON.parse(`coffeelint --reporter raw -f #{@config_file} #{path}`).values.first
 
       if errors.length > 0
         UI.warning "Coffeelint: #{path} has #{errors.length} errors"
