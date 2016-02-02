@@ -2,14 +2,12 @@ require 'guard'
 require 'guard/plugin'
 require 'JSON'
 require 'colorize'
-# require 'coffeelint'
 
 module Guard
   class Coffeelint < Plugin
 
     def initialize(options = {})
       super
-      # @config_file = options[:config_file] || 'config/coffeelint.json'
       @config_file = options[:config_file]
     end
 
@@ -24,18 +22,6 @@ module Guard
     #
     def run_on_changes(paths)
       lint_and_report paths
-      # Total errors across all files
-      # error_count = 0
-
-      # paths.each do |path|
-      #   errors = lint_and_report(path)
-
-      #   error_count += errors.length
-      # end
-
-      # notify(paths, error_count)
-
-      # true
     end
 
     def run_all
@@ -45,31 +31,17 @@ module Guard
     protected
 
     def notify(file_count, error_count)
-      message =  "#{error_count} errors in #{file_count} files"
-
+      msg = summary file_count, error_count
       image = if error_count > 0
         :failed
       else
         :success
       end
-
-      summary = "#{file_count} files scanned, "
-      summary << if error_count > 0
-                   "#{error_count} errors"
-                 else
-                   "No errors"
-                 end
-      summary << " found."
-
-      Notifier.notify(summary, title: "Coffeelint", image: image)
+      Notifier.notify(msg, title: "Coffeelint", image: image)
     end
 
 
     def lint_and_report(paths = nil)
-      # This is reporting some bad false-positives
-      # errors = ::Coffeelint.lint_file(path, config_file: @config_file)
-
-      # This works :|
       command = 'coffeelint -c --reporter raw'
       command += "-f #{@config_file}" if @config_file
       command += if paths && paths.length > 0
@@ -78,10 +50,7 @@ module Guard
                    ' .'
                  end
 
-      puts command
       results = `#{command}`
-      puts results
-      puts $?.success?
 
       begin
         results = JSON.parse(results)
@@ -106,32 +75,23 @@ module Guard
 
       file_count = results.size
       error_count = results.map { |_, e| e.size }.reduce(:+)
-      summary = "#{file_count} files scanned, "
-      summary << if error_count > 0
-                   "#{error_count} errors".red
-                 else
-                   "No errors".green
-                 end
-      summary << " found."
-
-      puts "\n" + summary
+      puts "\n" + summary(file_count, error_count, color: true)
 
       notify file_count, error_count
 
       throw :task_has_failed unless error_count == 0
+    end
 
-      # errors = JSON.parse(`coffeelint --reporter raw -f #{@config_file} #{path}`).values.first
-
-    #   if errors.length > 0
-    #     UI.warning "Coffeelint: #{path} has #{errors.length} errors"
-
-    #     errors.each do |error|
-    #       UI.warning "#{error['lineNumber']}: #{error['message']} (#{error['context']})"
-    #     end
-
-    #   end
-
-    #   errors
+    def summary(file_count, error_count, color: false)
+      summary = "#{file_count} files scanned, "
+      summary << if error_count > 0
+                   s = "#{error_count} errors"
+                   color ? s.red : s
+                 else
+                   s = "No errors"
+                   color ? s.green : s
+                 end
+      summary << " found."
     end
   end
 end
