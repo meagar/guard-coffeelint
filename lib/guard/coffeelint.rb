@@ -15,15 +15,14 @@ module Guard
       UI.info "Guard::Coffeelint linting against #{@config_file}"
     end
 
-    # Default behaviour on file(s) changes that the Guard plugin watches.
-    # @param [Array<String>] paths the changes files or paths
-    # @raise [:task_has_failed] when run_on_change has failed
-    # @return [Object] the task result
-    #
-    def run_on_changes(paths)
+    def run_on_additions(paths)
       lint_and_report paths
     end
 
+    def run_on_modifications(paths)
+      lint_and_report paths
+    end
+    
     def run_all
       lint_and_report
     end
@@ -50,7 +49,7 @@ module Guard
                    ' .'
                  end
 
-      results = `#{command}`
+      results = `#{command} 2>&1`
 
       begin
         results = JSON.parse(results)
