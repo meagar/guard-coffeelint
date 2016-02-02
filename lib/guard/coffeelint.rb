@@ -36,7 +36,7 @@ module Guard
       else
         :success
       end
-      Notifier.notify(msg, title: "Coffeelint", image: image)
+      Notifier.notify(msg, title: "CoffeeLint", image: image)
     end
 
 
