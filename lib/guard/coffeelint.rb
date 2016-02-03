@@ -68,7 +68,7 @@ module Guard
                          end
 
           puts "#{file.cyan}:#{error['lineNumber']}:#{error_letter}" \
-            ": #{error['name']}: #{error['message']}.#{error['context']}"
+            ": #{error['name']}: #{error['message']}. #{error['context']}"
         end
       end
 
