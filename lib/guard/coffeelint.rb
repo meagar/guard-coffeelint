@@ -1,6 +1,6 @@
 require 'guard'
 require 'guard/plugin'
-require 'JSON'
+require 'json'
 require 'colorize'
 
 module Guard
