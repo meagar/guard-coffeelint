@@ -42,7 +42,7 @@ module Guard
 
     def lint_and_report(paths = nil)
       command = 'coffeelint -c --reporter raw'
-      command += "-f #{@config_file}" if @config_file
+      command += " -f #{@config_file}" if @config_file
       command += if paths && paths.length > 0
                    " #{paths.join ' '}"
                  else
