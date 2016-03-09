@@ -8,7 +8,7 @@ module Guard
 
     def initialize(options = {})
       super
-      @config_file = options[:config_file]
+      @config_file = options[:config_file] || 'config/coffeelint.json'
     end
 
     def start
