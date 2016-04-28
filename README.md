@@ -18,14 +18,15 @@ Or install it yourself as:
 
 ## Usage
 
-1. Create and customize your config file:
+1. Create and customize your config file in the root of your project:
 
   ```
-  coffeelint --makeconfig > config/coffeelint.json
+  coffeelint --makeconfig > coffeelint.json
   ```
 
-  By default guard-coffeelint will look in `config/coffeelint.json`,
-  but you can override the location with `:config_file` in your Guardfile.
+  By default guard-coffeelint will look in the root of your project for
+  `coffeelint.json`, but you can override the location with `:config_file` in
+  your Guardfile.
 
 2. Add Coffeelint to your Guardfile:
 
@@ -35,7 +36,7 @@ Or install it yourself as:
     watch %r{^app/assets/javascripts/.*\.coffee$}
   end
   ```
- 
+
 ## Contributing
 
 1. Fork it
