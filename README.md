@@ -16,6 +16,14 @@ Or install it yourself as:
 
     $ gem install guard-coffeelint
 
+## Requirements
+With `guard-coffeelint@^0.1.2`, you must have the `coffeelint` executable
+in your path. The easiest way to accomplish this is to install CoffeeLint
+globally prior to using guard-coffeelint: `npm i -g coffeelint`
+
+If this doesn't work for you, use
+`guard-coffeelint@0.1.1` or lower.
+
 ## Usage
 
 1. Create and customize your config file:
@@ -35,7 +43,7 @@ Or install it yourself as:
     watch %r{^app/assets/javascripts/.*\.coffee$}
   end
   ```
- 
+
 ## Contributing
 
 1. Fork it
