@@ -45,6 +45,27 @@ If this doesn't work for you, use
   end
   ```
 
+### Configuration options
+
+You can pass some options in `Guardfile` like the following example:
+
+```ruby
+guard :coffeelint, config_file: 'config/coffeelint.json', paths: %w(app/assets/javascripts) do
+  # ...
+end
+```
+
+#### Available Options
+
+```ruby
+config_file: 'config/coffeelint.json' # Change the config file loaded
+                                      #   default: 'coffeelint.json'
+
+paths: %w(app/assets/javascripts)     # An array of paths passed to coffeelint to look for
+                                      # coffeescript files.
+                                      #   default: '.'
+```
+
 ## Contributing
 
 1. Fork it
