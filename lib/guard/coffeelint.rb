@@ -9,6 +9,7 @@ module Guard
     def initialize(options = {})
       super
       @config_file = options[:config_file]
+      @default_paths = options[:paths] || ['.']
     end
 
     def start
@@ -22,7 +23,7 @@ module Guard
     def run_on_modifications(paths)
       lint_and_report paths
     end
-    
+
     def run_all
       lint_and_report
     end
@@ -46,7 +47,7 @@ module Guard
       command += if paths && paths.length > 0
                    " #{paths.join ' '}"
                  else
-                   ' .'
+                   " #{@default_paths.join(' ')}"
                  end
 
       results = `#{command} 2>&1`
