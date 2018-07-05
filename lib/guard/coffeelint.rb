@@ -1,10 +1,11 @@
 require 'guard'
 require 'guard/plugin'
 require 'json'
-require 'colorize'
+require 'rainbow/refinement'
 
 module Guard
   class Coffeelint < Plugin
+    using Rainbow
 
     def initialize(options = {})
       super
