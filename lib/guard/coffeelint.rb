@@ -1,11 +1,10 @@
 require 'guard'
 require 'guard/plugin'
 require 'json'
-require 'rainbow/refinement'
+require 'rainbow'
 
 module Guard
   class Coffeelint < Plugin
-    using Rainbow
 
     def initialize(options = {})
       super
@@ -64,8 +63,8 @@ module Guard
         errors.each do |error|
           error_letter = error['level'].chars.first.upcase
           error_letter = case error_letter
-                         when 'E' then error_letter.red
-                         when 'W' then error_letter.yellow
+                         when 'E' then Rainbow(error_letter).red
+                         when 'W' then Rainbow(error_letter).yellow
                          else error_letter
                          end
 
@@ -87,10 +86,10 @@ module Guard
       summary = "#{file_count} files scanned, "
       summary << if error_count > 0
                    s = "#{error_count} errors"
-                   color ? s.red : s
+                   color ? Rainbow(s).red : s
                  else
                    s = "No errors"
-                   color ? s.green : s
+                   color ? Rainbow(s).green : s
                  end
       summary << " found."
     end
